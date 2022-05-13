@@ -19,9 +19,9 @@ copy .\*.* "C:\Program Files\OpenSSH"
 md c:\programdata\ssh
 
 
-# copy config file with pre-defined SSH port 22
+# copy config file with pre-defined SSH port 2223
 
-copy ".\sshd_config_original" "c:\programdata\ssh\sshd_config"
+copy ".\sshd_config_original2223" "c:\programdata\ssh\sshd_config"
 
 # run the installer 
 
@@ -45,12 +45,8 @@ gsv ssh* | Start-service
 
 # adding FW rules 
 
- New-NetFirewallRule -DisplayName "Allow inbound port 22 for SSH" -Direction inbound -LocalPort 22 -Protocol TCP -Action Allow
- New-NetFirewallRule -DisplayName "Allow outbound port 22 for SSH" -Direction inbound -LocalPort 22 -Protocol TCP -Action Allow
-
-# setting default shell to PowerShell instead of CMD
-
-New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -PropertyType String -Force
+ New-NetFirewallRule -DisplayName "Allow inbound port 2223 for SSH" -Direction inbound -LocalPort 2223 -Protocol TCP -Action Allow
+ New-NetFirewallRule -DisplayName "Allow outbound port 2223 for SSH" -Direction inbound -LocalPort 2223 -Protocol TCP -Action Allow
 
 # adding a program folder to PATH system variable
 

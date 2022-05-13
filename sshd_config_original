@@ -20,6 +20,7 @@
 # Ciphers and keying
 #RekeyLimit default none
 
+
 # Logging
 #SyslogFacility AUTH
 #LogLevel INFO
@@ -31,8 +32,6 @@
 #StrictModes yes
 #MaxAuthTries 6
 #MaxSessions 10
-
-#PubkeyAuthentication yes
 
 # The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
 # but this is overridden so installations will only check .ssh/authorized_keys
@@ -48,8 +47,10 @@ AuthorizedKeysFile	.ssh/authorized_keys
 # Don't read the user's ~/.rhosts and ~/.shosts files
 #IgnoreRhosts yes
 
+PubkeyAuthentication yes
+
 # To disable tunneled clear text passwords, change to no here!
-#PasswordAuthentication yes
+PasswordAuthentication yes
 #PermitEmptyPasswords no
 
 # GSSAPI options
@@ -61,11 +62,11 @@ AuthorizedKeysFile	.ssh/authorized_keys
 #PermitTTY yes
 #PrintMotd yes
 #PrintLastLog yes
-#TCPKeepAlive yes
+TCPKeepAlive yes
 #UseLogin no
 #PermitUserEnvironment no
-#ClientAliveInterval 0
-#ClientAliveCountMax 3
+ClientAliveInterval 60
+ClientAliveCountMax 3
 #UseDNS no
 #PidFile /var/run/sshd.pid
 #MaxStartups 10:30:100
@@ -73,11 +74,13 @@ AuthorizedKeysFile	.ssh/authorized_keys
 #ChrootDirectory none
 #VersionAddendum none
 
+
 # no default banner path
 #Banner none
 
 # override default of no subsystems
 Subsystem	sftp	sftp-server.exe
+Subsystem powershell c:/progra~1/powershell/7/pwsh.exe -sshs -NoLogo
 
 # Example of overriding settings on a per-user basis
 #Match User anoncvs
